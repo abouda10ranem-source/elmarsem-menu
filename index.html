@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مرسم | El Marsem - Menu Digital</title>
+  <meta name="description" content="Menu digital du restaurant مرسم - Didouche Mourad">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#15110e; --bg2:#1d1814; --card:#241d18; --card2:#2b231d;
+      --gold:#c9a46a; --gold2:#e3c28a; --text:#f5efe6; --muted:#b9ab9b;
+      --line:rgba(201,164,106,.18); --accent:#8b5e3c; --danger:#d45b5b;
+      --shadow:0 10px 30px rgba(0,0,0,.28);
+      --radius:18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,sans-serif;background:radial-gradient(ellipse at top,#2a211a 0%,#15110e 45%,#100d0b 100%);color:var(--text);min-height:100vh;padding-bottom:80px}
+    body.rtl{font-family:Cairo,Inter,sans-serif}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    .hero{position:relative;padding:28px 18px 20px;overflow:hidden;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(201,164,106,.12),transparent 60%)}
+    .hero-inner{max-width:1100px;margin:0 auto;display:grid;gap:18px;align-items:center}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:78px;height:78px;border-radius:22px;object-fit:cover;border:1px solid var(--line);background:#2a211a;box-shadow:var(--shadow)}
+    .logo-fallback{width:78px;height:78px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(135deg,#3b2d22,#201813);border:1px solid var(--line);font-family:'Playfair Display',serif;font-size:28px;color:var(--gold2);font-weight:700}
+    .eyebrow{color:var(--gold);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,7vw,3.6rem);line-height:1;letter-spacing:.02em}
+    .rtl h1,.rtl h2,.rtl h3,.rtl .section-title{font-family:Cairo,serif}
+    .subtitle{color:var(--muted);margin-top:8px;font-size:.98rem;line-height:1.6}
+    .topbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .lang-switch{display:inline-flex;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px}
+    .lang-btn{border:0;background:transparent;color:var(--muted);padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer;font-size:.9rem}
+    .lang-btn.active{background:var(--gold);color:#1a120d}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600;font-size:.9rem}
+    .btn:hover{border-color:rgba(201,164,106,.45)}
+    .btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a120d;border-color:transparent}
+    .search-wrap{max-width:1100px;margin:18px auto 0;padding:0 18px}
+    .search{width:100%;padding:14px 16px 14px 44px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font-size:1rem;outline:none}
+    .search:focus{border-color:rgba(201,164,106,.55);box-shadow:0 0 0 4px rgba(201,164,106,.12)}
+    .search-box{position:relative}
+    .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.65}
+    .rtl .search{padding:14px 44px 14px 16px}
+    .rtl .search-icon{left:auto;right:14px}
+    .nav-shell{position:sticky;top:0;z-index:50;background:rgba(21,17,14,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);margin-top:18px}
+    .cat-nav{max-width:1100px;margin:0 auto;display:flex;gap:10px;overflow:auto;padding:12px 18px;scrollbar-width:none}
+    .cat-nav::-webkit-scrollbar{display:none}
+    .pill{flex:0 0 auto;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.9rem;white-space:nowrap;transition:.2s}
+    .pill.active,.pill:hover{color:#1a120d;background:var(--gold);border-color:var(--gold)}
+    .container{max-width:1100px;margin:0 auto;padding:22px 18px}
+    .section{margin:28px 0 34px;scroll-margin-top:90px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .section-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2)}
+    .section-count{color:var(--muted);font-size:.85rem}
+    .banner{width:100%;height:180px;object-fit:cover;border-radius:20px;border:1px solid var(--line);margin-bottom:14px;filter:saturate(.95) contrast(1.02)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.2s;display:flex;min-height:112px}
+    .card:hover{transform:translateY(-2px);border-color:rgba(201,164,106,.4)}
+    .card-img{width:118px;min-width:118px;height:100%;object-fit:cover;background:#2a211a}
+    .card-img.placeholder{display:grid;place-items:center;color:var(--gold);font-size:2rem}
+    .card-body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+    .card-top{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}
+    .item-name{font-size:1rem;font-weight:700;line-height:1.35}
+    .price{color:var(--gold2);font-weight:800;white-space:nowrap;font-size:.98rem}
+    .desc{color:var(--muted);font-size:.88rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .empty{padding:28px;border:1px dashed var(--line);border-radius:16px;color:var(--muted);text-align:center}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:100}
+    .modal.show{display:flex}
+    .modal-card{width:min(720px,100%);background:#1b1612;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);max-height:calc(100vh - 36px);overflow:auto}
+    .modal-img{width:100%;max-height:360px;object-fit:cover;background:#241d18}
+    .modal-body{padding:20px}
+    .modal-close{position:sticky;top:10px;float:right;margin:10px 10px -52px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(0,0,0,.45);color:#fff;font-size:1.4rem;cursor:pointer}
+    .rtl .modal-close{float:left}
+    .modal-name{font-size:1.7rem;font-family:'Playfair Display',serif;margin-bottom:6px}
+    .modal-price{color:var(--gold2);font-size:1.25rem;font-weight:800;margin-bottom:12px}
+    .modal-desc{color:#ddd0c1;line-height:1.75}
+    .admin-fab{position:fixed;right:16px;bottom:16px;z-index:60}
+    .rtl .admin-fab{right:auto;left:16px}
+    .admin-panel{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;z-index:120;padding:16px;overflow:auto}
+    .admin-panel.show{display:block}
+    .admin-card{max-width:980px;margin:0 auto;background:#1b1612;border:1px solid var(--line);border-radius:20px;padding:18px}
+    .admin-head{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+    .admin-grid{display:grid;gap:10px}
+    .admin-row{display:grid;grid-template-columns:1.2fr 1.2fr .6fr .7fr auto;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+    .admin-row input,.admin-row select,.admin-row textarea{width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:#120f0d;color:var(--text);font:inherit}
+    .admin-row textarea{min-height:42px;resize:vertical}
+    .admin-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .danger{color:#fff;background:#7a2b2b;border-color:#7a2b2b}
+    .small{font-size:.82rem;color:var(--muted)}
+    footer{padding:30px 18px;text-align:center;color:var(--muted);border-top:1px solid var(--line)}
+    footer a{color:var(--gold2)}
+    @media (max-width:760px){
+      .admin-row{grid-template-columns:1fr 1fr;}
+      .admin-row .span2{grid-column:span 2}
+      .card-img{width:104px;min-width:104px}
+      .banner{height:140px}
+    }
+    @media print{.nav-shell,.admin-fab,.search-wrap,.hero-actions,.modal{display:none!important} body{background:#fff;color:#000}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="topbar">
+        <div class="brand">
+          <img src="assets/images/web_Screenshot_20261121_2023132.jpg" alt="Logo مرسم" class="logo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="logo-fallback" style="display:none">M</div>
+          <div>
+            <div class="eyebrow" data-i18n="eyebrow">Restaurant & Café</div>
+            <h1 id="siteName">مرسم</h1>
+            <div class="subtitle" id="siteSubtitle">Menu digital — Didouche Mourad</div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <div class="lang-switch" aria-label="Language switch">
+            <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+            <button class="lang-btn" data-lang="ar">🇩🇿 العربية</button>
+          </div>
+          <a class="btn" href="qr-code.html" id="qrLink">QR Code</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="search-wrap">
+    <div class="search-box">
+      <span class="search-icon">🔎</span>
+      <input id="search" class="search" type="search" placeholder="Rechercher un plat ou un ingrédient..." autocomplete="off">
+    </div>
+  </div>
+
+  <div class="nav-shell">
+    <nav class="cat-nav" id="catNav" aria-label="Categories"></nav>
+  </div>
+
+  <main class="container" id="menuRoot"></main>
+
+  <div class="modal" id="itemModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <img id="modalImg" class="modal-img" alt="">
+      <div class="modal-body">
+        <h2 class="modal-name" id="modalName"></h2>
+        <div class="modal-price" id="modalPrice"></div>
+        <p class="modal-desc" id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-fab"><button class="btn" id="adminBtn">⚙️ Admin</button></div>
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-card">
+      <div class="admin-head">
+        <div>
+          <h2 id="adminTitle">Administration du menu</h2>
+          <div class="small" id="adminHint">Protégé par mot de passe. Les modifications sont enregistrées dans ce navigateur (localStorage).</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" id="adminExport">Exporter JSON</button>
+          <button class="btn danger" id="adminReset">Réinitialiser</button>
+          <button class="btn" id="adminClose">Fermer</button>
+        </div>
+      </div>
+      <div id="adminLogin">
+        <div style="display:flex;gap:8px;max-width:420px">
+          <input id="adminPass" type="password" class="search" style="padding:12px 14px" placeholder="Mot de passe">
+          <button class="btn btn-gold" id="adminLoginBtn">Entrer</button>
+        </div>
+      </div>
+      <div id="adminBody" style="display:none">
+        <div class="admin-toolbar">
+          <select id="adminCat" class="btn"></select>
+          <button class="btn btn-gold" id="addItemBtn">+ Ajouter un plat</button>
+        </div>
+        <div class="admin-grid" id="adminList"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div id="footerText">مرسم — Didouche Mourad</div>
+    <div style="margin-top:8px;font-size:.85rem"><a href="qr-code.html" id="footerQr">Chevalet QR / Impression</a></div>
+  </footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
