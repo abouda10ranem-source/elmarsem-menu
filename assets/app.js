@@ -12,7 +12,7 @@
       search: 'Rechercher un plat ou un ingrédient...',
       admin: '⚙️ Admin', adminTitle: 'Administration du menu',
       adminHint: 'Protégé par mot de passe. Les modifications sont enregistrées dans ce navigateur (localStorage).',
-      pass: 'Mot de passe', enter: 'Entrer', close: 'Fermer', add: '+ Ajouter un plat',
+      pass: 'Mot de passe', enter: 'Entrer', close: 'Fermer', add: '+ Ajouter un plat', backMenu: 'Retour au menu',
       export: 'Exporter JSON', reset: 'Réinitialiser', empty: 'Aucun plat trouvé.',
       confirmReset: 'Réinitialiser le menu aux données par défaut ?',
       wrongPass: 'Mot de passe incorrect.',
@@ -25,7 +25,7 @@
       search: 'ابحث عن طبق أو مكوّن...',
       admin: '⚙️ الإدارة', adminTitle: 'إدارة القائمة',
       adminHint: 'محمي بكلمة مرور. يتم حفظ التعديلات في هذا المتصفح (localStorage).',
-      pass: 'كلمة المرور', enter: 'دخول', close: 'إغلاق', add: '+ إضافة طبق',
+      pass: 'كلمة المرور', enter: 'دخول', close: 'إغلاق', add: '+ إضافة طبق', backMenu: 'العودة إلى القائمة',
       export: 'تصدير JSON', reset: 'إعادة ضبط', empty: 'لم يتم العثور على أي طبق.',
       confirmReset: 'هل تريد إعادة ضبط القائمة إلى البيانات الافتراضية؟',
       wrongPass: 'كلمة المرور غير صحيحة.',
@@ -75,6 +75,7 @@
     $('#adminLoginBtn').textContent = t('enter');
     $('#adminClose').textContent = t('close');
     $('#addItemBtn').textContent = t('add');
+    const back=$('#adminBackBtn'); if(back) back.textContent = t('backMenu');
     $('#adminExport').textContent = t('export');
     $('#adminReset').textContent = t('reset');
     render();
@@ -233,6 +234,7 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeAdmin(); } });
   $('#adminBtn').onclick = openAdmin;
   $('#adminClose').onclick = closeAdmin;
+  const adminBack=$('#adminBackBtn'); if(adminBack) adminBack.onclick = closeAdmin;
   $('#adminLoginBtn').onclick = () => {
     if ($('#adminPass').value === ADMIN_PASS) {
       adminOk = true; $('#adminLogin').style.display='none'; $('#adminBody').style.display='block'; renderAdmin();
